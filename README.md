@@ -7,7 +7,7 @@ Base docker image to run a Strongswan IPsec and a XL2TPD server.
 Run the following to start the container:
 
 ```
-docker run -d -p 500:500/udp -p 4500:4500/udp -p 1701:1701/udp --privileged philplckthun/strongswan
+docker run -d -p 500:500/udp -p 4500:4500/udp --privileged
 ```
 
 If you haven't set any login credentials via configuration files or environment variables, then a new random password will be set. To get it, read the logs of the running container:
@@ -45,11 +45,9 @@ docker run ... -e VPN_USER=dave VPN_PASSWORD=dave-is-awesome ...
 
 There is a single volume that is mounted at `/etc/ipsec.d`. Through it you can add a lot of Strongswan configuration. Additionally you can overwrite:
 
-* /etc/ppp/l2tp-secrets
 * /etc/ipsec.secrets
 * /etc/ipsec.conf
 * /etc/strongswan.conf
-* /etc/xl2tpd.conf
 
 with it, by putting your configuration files in that volume folder as well. They will be copied to the correct locations.
 
@@ -66,5 +64,5 @@ The default IPSec configuration supports:
 
 The ports that are exposed for this container to work are:
 
-* 4500/udp and 500/udp for IPSec 
+* 4500/udp and 500/udp for IPSec
 * 1701/udp for L2TP
